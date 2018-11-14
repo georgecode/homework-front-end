@@ -1,14 +1,22 @@
 import React, { Component } from 'react';
 //import logo from './logo.svg';
 //import './App.css';
-import GetGifs from './components/GetGifs'
+import Header from './components/Header'
+import GifCon from './components/GifCon'
+import loading from './images/loading.gif'
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      images:[loading,loading,loading]
+    }
+  }  
   render() {
     return (
-      <div>         
-          <h2>Test</h2>
-       <GetGifs />
+      <div> 
+        <Header />
+        <GifCon />        
       </div>
     );
   }
@@ -16,4 +24,15 @@ class App extends Component {
 
 export default App;
 
-//<img src={logo} className="App-logo" alt="logo" />
+
+
+
+
+
+
+
+
+
+
+
+

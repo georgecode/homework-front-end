@@ -17,15 +17,15 @@ class GifCon extends Component {
   }
 
    componentDidMount() {
-    GetGifs("serch xyzzz").then(value => {
-    	console.log("#@#@#@#@#@#@#@#@#@#@#@#@#@#", value[0])
+    GetGifs("surf").then(value => {
+    	//console.log("#@#@#@#@#@#@#@#@#@#@#@#@#@#", value[0])
       this.setState({
       	testImage:value[0].images.downsized_medium.url
       });
     });
 
-    GetGifs("serch xyzzz").then(value => {
-    	//console.log("#@#@#@#@#@#@#@#@#@#@#@#@#@#", value)
+    GetGifs("music").then(value => {
+    	console.log("#@#@#@#@#@#@#@#@#@#@#@#@#@#", value)
       this.setState({
       	images:value
       });

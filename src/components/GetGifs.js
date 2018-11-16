@@ -1,13 +1,60 @@
-import React, { Component } from 'react';
+import axios from 'axios';
 
-class GetGifs extends Component {
-  render() {
-    return (
-      <div className="App">
-        <h1> Get gifs</h1>
-      </div>
-    );
-  }
+export default (search) => {
+	//nSrqu5nPMLDZWmKICduK7XeVKj5tOJCU
+	//http://api.giphy.com/v1/gifs/search?q=ryan+gosling&api_key=YOUR_API_KEY&limit=5");
+	//const corsHack = "http://cors-anywhere.herokuapp.com/"
+	return axios({
+    method: "get",
+    //url: "http://api.giphy.com/v1/gifs/search?q=ryan+gosling&api_key=nSrqu5nPMLDZWmKICduK7XeVKj5tOJCU&limit=10",
+    //search
+   	//url:`http://api.giphy.com/v1/gifs/search?q=${search}&api_key=nSrqu5nPMLDZWmKICduK7XeVKj5tOJCU&limit=100`,
+
+   	//trending
+   	 url: "http://api.giphy.com/v1/gifs/trending?=&api_key=nSrqu5nPMLDZWmKICduK7XeVKj5tOJCU&limit=20",
+   	 
+   	//offset (choose the gif to start at)
+   	 //url: "http://api.giphy.com/v1/gifs/trending?=&api_key=nSrqu5nPMLDZWmKICduK7XeVKj5tOJCU&offset=3&limit=20",
+   	 
+   	
+
+  }).then(function(response) {
+  	//console.log("Responce from giphy worked",response.data.data[0].images.downsized_medium.url)
+    console.log('giphy RESPONCE',response.data.data[1])
+    console.log("number of gif's", response.data.data.length)
+    //return "testing"
+    return response.data.data
+    //return response.data.data[0].images.downsized_medium.url
+    //return response.data.data[1];
+  });
 }
 
-export default GetGifs;
+// HOST
+// api.giphy.com
+
+// PATH
+// GET /v1/gifs/search
+//
+//query
+// ?q=YOUSEARCh
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

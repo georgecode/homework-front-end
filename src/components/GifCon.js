@@ -1,8 +1,10 @@
+//import React from 'react';
 import React, { Component } from 'react';
 import loading from '../images/loading.gif';
 import loading_small from '../images/loading_small.gif';
 //import GetgifsTest from './GetgifsTest';
 import GetGifs from './GetGifs'
+import { Grid } from "@material-ui/core";
 
 
 let testStructure ={images:{downsized_medium:{url:loading}}}
@@ -37,7 +39,7 @@ class GifCon extends Component {
 
 //response.data.data[0].images.downsized_medium.url
   render() {
-  	console.log("image value", this.state.images)
+  	console.log("image value##", this.state.images)
   	//GetGifs("serch xyzzz")
 //   <img src={this.state.testImage} alt="test" />
     return (

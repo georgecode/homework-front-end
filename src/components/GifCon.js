@@ -24,7 +24,7 @@ class GifCon extends Component {
       });
     });
 
-    GetGifs("music").then(value => {
+    GetGifs("surf").then(value => {
     	console.log("#@#@#@#@#@#@#@#@#@#@#@#@#@#", value)
       this.setState({
       	images:value

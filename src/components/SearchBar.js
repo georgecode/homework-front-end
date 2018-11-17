@@ -1,4 +1,3 @@
-//import React from 'react';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
@@ -78,28 +77,34 @@ const styles = theme => ({
 class SearchBar extends Component {
     constructor(props) {
     super(props);
-    this.state={}
+    this.state={
+      //parameter needed for gipfy trending request
+      searchQuery:"trending?="
+    }
 
     //this.searchChange = this.searchChange.bind(this);
-    //this.searchIconClick = this.searchIconClick.bind(this);
+    this.searchIconClick = this.searchIconClick.bind(this);
   } 
 
-      searchChange(event) {
-        console.log("EVENT $%^&*$%^&*$%^&*",event.target.value)
-    // const eventValue = event.target.value;
-    // const eventName = event.target.name;
-    // this.setState(function(prevState, props) {
-    //   return {
-    //     order: Object.assign({}, prevState.order, {
-    //       [eventName]: eventValue
-    //     })
-    //   };
-    // });
-  }
+  // searchChange(event) {
+  //       console.log("EVENT $%^&*$%^&*$%^&*",event.target.value)
+  //   // const eventValue = event.target.value;
+  //   // const eventName = event.target.name;
+  //   // this.setState(function(prevState, props) {
+  //   //   return {
+  //   //     order: Object.assign({}, prevState.order, {
+  //   //       [eventName]: eventValue
+  //   //     })
+  //   //   };
+  //   // });
+  // }
 
   searchIconClick(event){
     if(event.target.value!=""){
-      console.log("search icon was clicked ")
+      console.log("search icon was clicked",event.target.value)
+      this.setState({
+        searchQuery:`search?q=${event.target.value}`
+      });
     }
   }
 
@@ -131,7 +136,7 @@ class SearchBar extends Component {
             <InputBase
               placeholder="Search…"
               //
-              onChange={this.searchChange}
+              //onChange={this.searchChange}
               classes={{
                 root: classes.inputRoot,
                 input: classes.inputInput,
@@ -140,7 +145,7 @@ class SearchBar extends Component {
           </div>
         </Toolbar>
       </AppBar>
-      <GifCon />
+      <GifCon searchQuery={this.state.searchQuery} />
     </div>
     );//END return
   }// END RENDER

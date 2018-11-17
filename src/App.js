@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-//import logo from './logo.svg';
-//import './App.css';
 //import Header from './components/Header';
 import SearchBar from './components/SearchBar';
 //import GifCon from './components/GifCon';
@@ -18,22 +16,15 @@ const styles = theme => ({
 class App extends Component {
   constructor(props) {
     super(props);
-    //####################################
     this.theme = Theme();
-    console.log("theme", this.theme);
-    // this.state = {
-      
-    // }
+    //console.log("theme", this.theme);
+    // this.state = {}
   }  
   render() {
     return (
       <MuiThemeProvider theme={this.theme}>
-      <CssBaseline />
-    
-      <SearchBar />
-       
-                
-    
+        <CssBaseline />
+        <SearchBar />                     
       </MuiThemeProvider>
     );
   }

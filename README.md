@@ -1,5 +1,6 @@
 ## Be sure to have axios installed
- 
+## npm install @material-ui/core
+## npm install @material-ui/icons 
 
 
 # Eaze Front End Homework

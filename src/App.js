@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 //import './App.css';
 //import Header from './components/Header';
 import SearchBar from './components/SearchBar';
-import GifCon from './components/GifCon';
+//import GifCon from './components/GifCon';
 import loading from './images/loading.gif';
 
 import { withStyles, MuiThemeProvider } from "@material-ui/core/styles";
@@ -32,7 +32,7 @@ class App extends Component {
     
       <SearchBar />
        
-        <GifCon />        
+                
     
       </MuiThemeProvider>
     );

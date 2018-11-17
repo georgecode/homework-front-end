@@ -1,4 +1,5 @@
-import React from 'react';
+//import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -9,6 +10,7 @@ import { fade } from '@material-ui/core/styles/colorManipulator';
 import { withStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
+import GifCon from './GifCon';
 
 const styles = theme => ({
   root: {
@@ -70,9 +72,35 @@ const styles = theme => ({
   },
 });
 
-function SearchBar(props) {
-  const { classes } = props;
-  return (
+
+
+
+class SearchBar extends Component {
+    constructor(props) {
+    super(props);
+    this.state={}
+
+    //this.handleChange = this.handleChange.bind(this);
+  } 
+
+      handleChange(event) {
+        console.log("EVENT $%^&*$%^&*$%^&*",event.target.value)
+    // const eventValue = event.target.value;
+    // const eventName = event.target.name;
+    // this.setState(function(prevState, props) {
+    //   return {
+    //     order: Object.assign({}, prevState.order, {
+    //       [eventName]: eventValue
+    //     })
+    //   };
+    // });
+  }
+
+
+    render() {
+    const { classes } = this.props;
+    
+    return (
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
@@ -89,6 +117,8 @@ function SearchBar(props) {
             </div>
             <InputBase
               placeholder="Search…"
+              //
+              onChange={this.handleChange}
               classes={{
                 root: classes.inputRoot,
                 input: classes.inputInput,
@@ -97,12 +127,14 @@ function SearchBar(props) {
           </div>
         </Toolbar>
       </AppBar>
+      <GifCon />
     </div>
-  );
-}
+    );//END return
+  }// END RENDER
+}// END SearchBar extends Component
 
-SearchBar.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
+// SearchBar.propTypes = {
+//   classes: PropTypes.object.isRequired,
+// };
 
 export default withStyles(styles)(SearchBar);

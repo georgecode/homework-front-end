@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+//import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -100,8 +100,8 @@ class SearchBar extends Component {
   // }
 
   searchIconClick(event){
-    if(event.target.value!=""){
-      console.log("search icon was clicked",event.target.value)
+    if(event.target.value!==""){
+      //console.log("search icon was clicked",event.target.value)
       this.setState({
         searchQuery:`search?q=${event.target.value}`
       });
@@ -151,6 +151,7 @@ class SearchBar extends Component {
   }// END RENDER
 }// END SearchBar extends Component
 
+//***If you uncomment this be sure to uncomment it's import
 // SearchBar.propTypes = {
 //   classes: PropTypes.object.isRequired,
 // };

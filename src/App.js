@@ -2,16 +2,16 @@ import React, { Component } from 'react';
 //import Header from './components/Header';
 import SearchBar from './components/SearchBar';
 //import GifCon from './components/GifCon';
-import loading from './images/loading.gif';
+//import loading from './images/loading.gif';
 
-import { withStyles, MuiThemeProvider } from "@material-ui/core/styles";
+import { MuiThemeProvider } from "@material-ui/core/styles";
 import Theme from "./components/Theme";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { withTheme } from "@material-ui/core/styles";
 
-const styles = theme => ({
-  //testMui:{color:"red"}
-})
+// const styles = theme => ({
+//   //testMui:{color:"red"}
+// })
 
 class App extends Component {
   constructor(props) {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import loading from '../images/loading.gif';
+//import loading from '../images/loading.gif';
 import loading_small from '../images/loading_small.gif';
-import GetGifs from './GetGifs'
+import getGifs from './getGifs'
 import { withStyles } from "@material-ui/core/styles";
 import { Paper } from "@material-ui/core";
 
@@ -17,22 +17,23 @@ class GifCon extends Component {
     super(props);
     this.state = {
     	//****Dont forget to change this if you change image option
-    	images:[{images:{fixed_height_small:{url:loading_small}}}],
+    	images:[{id:"12345678910",images:{fixed_height_small:{url:loading_small}}}],
     	testImage: loading_small,
     }
   }
 
    componentDidMount() {
    	//single gif
-    // GetGifs("batman").then(value => {
+    // getGifs("batman").then(value => {
     // 	//console.log("#@#@#@#@#@#@#@#@#@#@#@#@#@#", value[0])
     //   this.setState({
     //   	//testImage:value[0].images.downsized_medium.url
     //   });
     // });
 
-    GetGifs(this.props.searchQuery).then(value => {
-    	console.log("#@#@#@#@#@#@#@#@#@#@#@#@#@#", value)
+    getGifs(this.props.searchQuery).then(value => {
+    	//console.log("#@#@#@#@#@#@#@#@#@#@#@#@#@#", value)
+    	console.log("#@#@#@#@#@#@#@#@#@#@#@#@#@#", value[0].id)
       this.setState({
       	images:value
       });
@@ -43,7 +44,7 @@ class GifCon extends Component {
   	componentWillReceiveProps(nextProps) {
 		// The If statement prevents re-render if search is the same
 		if (nextProps.searchQuery !== this.props.searchQuery) {
-			    GetGifs(nextProps.searchQuery).then(value => {
+			    getGifs(nextProps.searchQuery).then(value => {
     				console.log("#@#@#@#@#@#@#@#@#@#@#@#@#@#", value)
       				this.setState({
       					images:value
@@ -65,6 +66,11 @@ class GifCon extends Component {
         <h1 className={classes.gifConTestMui}> Gif cotain</h1>
         </Paper>
                {this.state.images.map(el=>{
+               	// console.log(el.title)
+               	// console.log(el.rating)
+               	// //console.log(el._score)
+               	// console.log(el.username)
+               	// console.log("----------------")
           return (
           	//##image options
           	//***If image options are changed here they must also be changed in state******
@@ -75,13 +81,14 @@ class GifCon extends Component {
           	//fixed_width_small
           	//original
           	//preview
-            <img src={el.images.fixed_height_small.url} alt="test" />
+           	<img key={el.id}src={el.images.fixed_height_small.url} alt="test" />
             )
           })}
       </div>
     );
   }
 }
+// <img key={el.id}src={el.images.fixed_height_small.url} alt="test" />
 //export default GifCon;
 export default withStyles(styles)(GifCon);
 

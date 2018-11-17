@@ -80,10 +80,11 @@ class SearchBar extends Component {
     super(props);
     this.state={}
 
-    //this.handleChange = this.handleChange.bind(this);
+    //this.searchChange = this.searchChange.bind(this);
+    //this.searchIconClick = this.searchIconClick.bind(this);
   } 
 
-      handleChange(event) {
+      searchChange(event) {
         console.log("EVENT $%^&*$%^&*$%^&*",event.target.value)
     // const eventValue = event.target.value;
     // const eventName = event.target.name;
@@ -94,6 +95,12 @@ class SearchBar extends Component {
     //     })
     //   };
     // });
+  }
+
+  searchIconClick(event){
+    if(event.target.value!=""){
+      console.log("search icon was clicked ")
+    }
   }
 
 
@@ -111,14 +118,20 @@ class SearchBar extends Component {
             Material-UI
           </Typography>
           <div className={classes.grow} />
-          <div className={classes.search}>
+          <div 
+          className={classes.search}
+          onClick={this.searchIconClick}
+          >
+
             <div className={classes.searchIcon}>
-              <SearchIcon />
+              <SearchIcon
+              
+               />
             </div>
             <InputBase
               placeholder="Search…"
               //
-              onChange={this.handleChange}
+              onChange={this.searchChange}
               classes={{
                 root: classes.inputRoot,
                 input: classes.inputInput,

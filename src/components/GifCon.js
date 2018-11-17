@@ -4,11 +4,15 @@ import loading from '../images/loading.gif';
 import loading_small from '../images/loading_small.gif';
 //import GetgifsTest from './GetgifsTest';
 import GetGifs from './GetGifs'
-import { Grid } from "@material-ui/core";
+import { withStyles } from "@material-ui/core/styles";
+import { Paper } from "@material-ui/core";
 
 
-let testStructure ={images:{downsized_medium:{url:loading}}}
-console.log(testStructure.images.downsized_medium.url)
+// let testStructure ={images:{downsized_medium:{url:loading}}}
+// console.log(testStructure.images.downsized_medium.url)
+const styles = theme => ({
+	gifConTestMui:{color:"blue"}
+})
 
 class GifCon extends Component {
 	constructor(props) {
@@ -39,13 +43,16 @@ class GifCon extends Component {
 
 //response.data.data[0].images.downsized_medium.url
   render() {
+  	const { classes } = this.props
   	console.log("image value##", this.state.images)
   	//GetGifs("serch xyzzz")
 //   <img src={this.state.testImage} alt="test" />
     return (
       <div>
     	<img src={this.state.testImage} alt="test" />
-        <h1> Gif cotain</h1>
+    	<Paper>
+        <h1 className={classes.gifConTestMui}> Gif cotain</h1>
+        </Paper>
                {this.state.images.map(el=>{
           return (
           	//##image options
@@ -68,7 +75,8 @@ class GifCon extends Component {
   }
 }
 //<img src={el.image.downsized_medium.url} alt="test" />
-export default GifCon;
+//export default GifCon;
+export default withStyles(styles)(GifCon);
 
 
 

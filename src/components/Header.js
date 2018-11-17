@@ -1,15 +1,31 @@
 import React, { Component } from 'react';
+import { withStyles } from "@material-ui/core/styles";
+import { Paper } from "@material-ui/core";
+
+const styles = theme => ({
+	testMui:{color:"red"},
+	testTheme:{color:theme.palette.myGreen}
+})
 
 class Header extends Component {
+	constructor(props) {
+    super(props);
+  } 
 
   render() {
-  	//console.log("Header loaded")
+  	const { classes } = this.props;
+  	console.log("This Props #####$$$$$$####$$$$",classes)
     return (
       <div>
-        <h1> Header!!</h1>
+      <Paper>
+        <h1 className={classes.testMui}> Header!!</h1>
+        <h1 className={classes.testTheme}> Test Theme!!</h1>
+        </Paper>
       </div>
+
     );
   }
 }
 
-export default Header;
+export default withStyles(styles)(Header);
+//export default Header;

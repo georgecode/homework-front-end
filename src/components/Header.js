@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withStyles } from "@material-ui/core/styles";
 import { Paper } from "@material-ui/core";
+import SearchBar from './SearchBar';
 
 const styles = theme => ({
 	testMui:{color:"red"},
@@ -17,6 +18,7 @@ class Header extends Component {
   	console.log("This Props #####$$$$$$####$$$$",classes)
     return (
       <div>
+      <SearchBar />
       <Paper>
         <h1 className={classes.testMui}> Header!!</h1>
         <h1 className={classes.testTheme}> Test Theme!!</h1>

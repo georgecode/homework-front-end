@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 //import logo from './logo.svg';
 //import './App.css';
-import Header from './components/Header';
+//import Header from './components/Header';
+import SearchBar from './components/SearchBar';
 import GifCon from './components/GifCon';
 import loading from './images/loading.gif';
 
@@ -29,8 +30,8 @@ class App extends Component {
       <MuiThemeProvider theme={this.theme}>
       <CssBaseline />
     
-
-        <Header />
+      <SearchBar />
+       
         <GifCon />        
     
       </MuiThemeProvider>

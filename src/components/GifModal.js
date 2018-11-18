@@ -30,6 +30,7 @@ class GifModal extends Component {
     super(props);
     this.state = {
       open: this.props.open,
+      title:"hey O this is a title"
     };
   } 
 
@@ -45,6 +46,8 @@ class GifModal extends Component {
 
   render() {
   	const { classes } = this.props;
+    console.log("GifModal this.props",this.props.gifInfo)
+    console.log("GifModal this.props",this.props.gifInfo.src)
     return (
       <Fragment>
         <Modal
@@ -60,8 +63,10 @@ class GifModal extends Component {
                 onClick={this.handleGifModalClose}
               />
               <Typography variant="h6" id="modal-title">
-                TESTING GIF MODAL
+                {this.props.gifInfo.title}
               </Typography>
+              <img src={this.props.gifInfo.src} alt="test" />
+
             </Paper>
           </div>
         </Modal>

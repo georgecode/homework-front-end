@@ -20,7 +20,9 @@ class GifCon extends Component {
     	//****Dont forget to change this if you change image option
     	images:[{id:"12345678910",images:{fixed_height_small:{url:loading_small}}}],
     	testImage: loading_small,
-    	open:false
+    	open:false,
+    	gifInfo:""
+
     }
     this.handleGifModalOpen = this.handleGifModalOpen.bind(this);
   }
@@ -56,11 +58,27 @@ class GifCon extends Component {
 		}
 	}
 
-	handleGifModalOpen(){
+
+
+
+
+
+
+
+	handleGifModalOpen(event){
+		console.log("handleGifModalOpen")
+		console.log("handleGifModalOpen event", event.target)
 		this.setState({
-      		open:true
+      		open:true,
+      		gifInfo:event.target
       	});
 	}
+
+
+
+
+
+
 
 //response.data.data[0].images.downsized_medium.url
   render() {
@@ -70,7 +88,7 @@ class GifCon extends Component {
   	//<img src={this.state.testImage} alt="test" />
     return (
       <div>
-    	<GifModal open={this.state.open}/>
+    	<GifModal gifInfo={this.state.gifInfo} open={this.state.open}/>
     	<Paper>
         <h1 className={classes.gifConTestMui}> Gif cotain</h1>
         </Paper>
@@ -95,7 +113,8 @@ class GifCon extends Component {
            	onClick={this.handleGifModalOpen} 
            	src={el.images.fixed_height_small.url} 
            	alt="test"
-           	
+           	title={el.title}
+           	bigGif={el.images.fixed_height_small.url}
            	/>
             )
           })}

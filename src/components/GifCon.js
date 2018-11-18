@@ -4,6 +4,7 @@ import loading_small from '../images/loading_small.gif';
 import getGifs from './getGifs'
 import { withStyles } from "@material-ui/core/styles";
 import { Paper } from "@material-ui/core";
+import GifModal from './GifModal';
 
 
 // let testStructure ={images:{downsized_medium:{url:loading}}}
@@ -61,7 +62,7 @@ class GifCon extends Component {
   	//<img src={this.state.testImage} alt="test" />
     return (
       <div>
-    	
+    	<GifModal open={true}/>
     	<Paper>
         <h1 className={classes.gifConTestMui}> Gif cotain</h1>
         </Paper>

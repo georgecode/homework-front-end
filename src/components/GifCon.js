@@ -7,8 +7,6 @@ import { Paper } from "@material-ui/core";
 import GifModal from './GifModal';
 
 
-// let testStructure ={images:{downsized_medium:{url:loading}}}
-// console.log(testStructure.images.downsized_medium.url)
 const styles = theme => ({
 	gifConTestMui:{color:"blue"}
 })
@@ -18,7 +16,19 @@ class GifCon extends Component {
     super(props);
     this.state = {
     	//****Dont forget to change this if you change image option
-    	images:[{id:"12345678910",images:{fixed_height_small:{url:loading_small}}}],
+    	images:[{id:"12345678910",
+    		title:"title GIF title",
+
+	    	images:{
+	    		fixed_height_small:{
+	    			url:loading_small
+	    			},
+	    		original:{
+	    			url:loading_small
+	    			}	
+	    	}
+    	}],
+
     	testImage: loading_small,
     	open:false,
     	gifInfo:""
@@ -28,17 +38,9 @@ class GifCon extends Component {
   }
 
    componentDidMount() {
-   	//single gif
-    // getGifs("batman").then(value => {
-    // 	//console.log("#@#@#@#@#@#@#@#@#@#@#@#@#@#", value[0])
-    //   this.setState({
-    //   	//testImage:value[0].images.downsized_medium.url
-    //   });
-    // });
-
     getGifs(this.props.searchQuery).then(value => {
     	//console.log("#@#@#@#@#@#@#@#@#@#@#@#@#@#", value)
-    	console.log("#@#@#@#@#@#@#@#@#@#@#@#@#@#", value[0].id)
+    	//console.log("#@#@#@#@#@#@#@#@#@#@#@#@#@#", value[0])
       this.setState({
       	images:value
       });
@@ -50,7 +52,7 @@ class GifCon extends Component {
 		// The If statement prevents re-render if search is the same
 		if (nextProps.searchQuery !== this.props.searchQuery) {
 			    getGifs(nextProps.searchQuery).then(value => {
-    				console.log("#@#@#@#@#@#@#@#@#@#@#@#@#@#", value)
+    				//console.log("#@#@#@#@#@#@#@#@#@#@#@#@#@#", value)
       				this.setState({
       					images:value
       				});
@@ -66,26 +68,17 @@ class GifCon extends Component {
 
 
 	handleGifModalOpen(event){
-		console.log("handleGifModalOpen")
-		console.log("handleGifModalOpen event", event.target)
+		//console.log("handleGifModalOpen")
+		//console.log("handleGifModalOpen event", event.target)
 		this.setState({
       		open:true,
       		gifInfo:event.target
       	});
 	}
 
-
-
-
-
-
-
-//response.data.data[0].images.downsized_medium.url
   render() {
   	//console.log("this.props.searchQuery", this.props.searchQuery)
   	const { classes } = this.props
-  	//console.log("this.state.images", this.state.images)
-  	//<img src={this.state.testImage} alt="test" />
     return (
       <div>
     	<GifModal gifInfo={this.state.gifInfo} open={this.state.open}/>
@@ -103,18 +96,21 @@ class GifCon extends Component {
           	//***If image options are changed here they must also be changed in state******
           	//downsized_medium
           	//fixed_height
-          	//fixed_height_small
+          	//fixed_height_small //what i use
           	//fixed_width
           	//fixed_width_small
           	//original
           	//preview
-           	<img 
+           	<img
+            //SUPER HACKEY
+            //don't forget to change this**
+           	//id={el.images.original.url} 
            	key={el.id} 
            	onClick={this.handleGifModalOpen} 
            	src={el.images.fixed_height_small.url} 
            	alt="test"
            	title={el.title}
-           	bigGif={el.images.fixed_height_small.url}
+           	data-big={el.images.original.url}
            	/>
             )
           })}

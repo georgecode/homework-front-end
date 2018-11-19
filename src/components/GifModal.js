@@ -3,7 +3,8 @@ import { withStyles } from "@material-ui/core/styles";
 import { Typography,
          Modal,
          Paper, } from "@material-ui/core";
-import HighliteOff from "@material-ui/icons/HighlightOff";         
+import HighliteOff from "@material-ui/icons/HighlightOff";
+import loading_small from '../images/loading_small.gif';         
 
 
 const styles = theme => ({
@@ -22,21 +23,58 @@ const styles = theme => ({
     display: "block",
     float: "right"
   },
+  title:{
+    color:"red",
+    fontSize:'2em'
+  },
+  imageCon:{
+    //display:'block',
+    backgroundColor:"black",
+    width:500,
+    height:300,
+    margin:"0 auto",
+    //backgroundSize: "cover",
+    //objectFit: 'cover'
+    //objectFit: 'contain'
+  },
+  image:{
+    maxWidth:'100%', 
+    maxHeight:'100%',
+    margin:'auto',
+    display:'block'
+
+  // objectFit: "cover",
+  //display: 'block',
+  //width: '100vw',
+  //height: '100vh',
+  }
 
 })
+
 
 class GifModal extends Component {
 	constructor(props) {
     super(props);
     this.state = {
       open: this.props.open,
-      title:"hey O this is a title"
+      title:"hey O this is a title",
+      bigImg: loading_small,
+      by:"by someone"
+
     };
   } 
 
+
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.open !== this.state.open) {
-      this.setState({ open: nextProps.open });
+      this.setState({ 
+        open: nextProps.open,
+        title: nextProps.gifInfo.title.split('GIF')[0].toUpperCase(),
+        bigImg: nextProps.gifInfo.getAttribute('data-big'),
+        by: nextProps.gifInfo.title.split('GIF')[1].replace("by", "By: ")
+
+      });
     }
   }
 
@@ -46,8 +84,6 @@ class GifModal extends Component {
 
   render() {
   	const { classes } = this.props;
-    console.log("GifModal this.props",this.props.gifInfo)
-    console.log("GifModal this.props",this.props.gifInfo.src)
     return (
       <Fragment>
         <Modal
@@ -62,10 +98,17 @@ class GifModal extends Component {
                 className={classes.closeButton}
                 onClick={this.handleGifModalClose}
               />
-              <Typography variant="h6" id="modal-title">
-                {this.props.gifInfo.title}
+              <Typography className={classes.title} variant="h1" id="modal-title">
+                {this.state.title
+                }
               </Typography>
-              <img src={this.props.gifInfo.src} alt="test" />
+              <div className={classes.imageCon} >
+                <img className={classes.image} src={this.state.bigImg} alt="test" />
+              </div>
+              <Typography variant="h6" id="modal-title" >
+                {this.state.by}
+              </Typography>
+              
 
             </Paper>
           </div>
@@ -77,4 +120,13 @@ class GifModal extends Component {
 }
 
 export default withStyles(styles)(GifModal);
+//style={{background: `url(${this.state.bigImg})`}}
+
+//style={{backgroundImage: `url(${loading_small})`}}
+
+//<img className={classes.image} src={this.state.bigImg} alt="test" />
 //export default Header;
+//<img src={this.props.gifInfo.id} alt="test" />
+
+
+

@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 //import loading from '../images/loading.gif';
 import loading_small from '../images/loading_small.gif';
-import getGifs from './getGifs'
+//git wants the g in the path ./GetGifs Uppercase,  React wants the named import lowercase 
+//so the paths file will be upper case and the named import will be lowercase
+import getGifs from './GetGifs'
 import { withStyles } from "@material-ui/core/styles";
 import { Paper } from "@material-ui/core";
 import GifModal from './GifModal';

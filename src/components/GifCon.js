@@ -22,7 +22,7 @@ class GifCon extends Component {
     		title:"title GIF title",
 
 	    	images:{
-	    		fixed_height_small:{
+	    		fixed_width:{
 	    			url:loading_small
 	    			},
 	    		original:{
@@ -109,7 +109,7 @@ class GifCon extends Component {
            	//id={el.images.original.url} 
            	key={el.id} 
            	onClick={this.handleGifModalOpen} 
-           	src={el.images.fixed_height_small.url} 
+           	src={el.images.fixed_width.url} 
            	alt="test"
            	title={el.title}
            	data-big={el.images.original.url}

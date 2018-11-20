@@ -1,4 +1,5 @@
-import * as React from 'react';
+//import * as React from 'react';
+import React, { Component } from 'react';
 import Masonry from 'react-masonry-component';
 import loading_small from '../images/loading_small.gif';
 import getGifs from './GetGifs';
@@ -47,7 +48,7 @@ class Gallery extends React.Component {
 
 
 
-    
+
 
 
         this.state = {

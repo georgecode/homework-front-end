@@ -7,11 +7,19 @@ import getGifs from './GetGifs'
 import { withStyles } from "@material-ui/core/styles";
 import { Paper } from "@material-ui/core";
 import GifModal from './GifModal';
+import Gallery from "./Gallery";
+import Masonry from 'react-masonry-component';
 
 
 const styles = theme => ({
 	gifConTestMui:{color:"red"}
 })
+
+const masonryOptions = {
+    transitionDuration: 0
+};
+ 
+const imagesLoadedOptions = { background: '.my-bg-image-el' }
 
 class GifCon extends Component {
 	constructor(props) {
@@ -81,45 +89,67 @@ class GifCon extends Component {
   render() {
   	//console.log("this.props.searchQuery", this.props.searchQuery)
   	const { classes } = this.props
+
+
+    const childElements = this.state.images.map(function(el){
+      console.log("el",el.id)
+       return (
+
+            <li className="image-element-class">
+                <img 
+                src={el.images.fixed_width.url} 
+                key={el.id} />
+            </li>
+        );
+    });
+
+
+
+
+
+
     return (
       <div>
     	<GifModal gifInfo={this.state.gifInfo} open={this.state.open}/>
     	<Paper>
         <h1 className={classes.gifConTestMui}> Gif cotain</h1>
         </Paper>
-               {this.state.images.map(el=>{
-               	// console.log(el.title)
-               	// console.log(el.rating)
-               	// //console.log(el._score)
-               	// console.log(el.username)
-               	// console.log("----------------")
-          return (
-          	//##image options
-          	//***If image options are changed here they must also be changed in state******
-          	//downsized_medium
-          	//fixed_height
-          	//fixed_height_small //what i use
-          	//fixed_width
-          	//fixed_width_small
-          	//original
-          	//preview
-           	<img
-            //SUPER HACKEY
-            //don't forget to change this**
-           	//id={el.images.original.url} 
-           	key={el.id} 
-           	onClick={this.handleGifModalOpen} 
-           	src={el.images.fixed_width.url} 
-           	alt="test"
-           	title={el.title}
-           	data-big={el.images.original.url}
-           	/>
-            )
-          })}
+        {
+          ///////////////////////////////////////
+        }
+
+
+
+            <Masonry
+                className={'my-gallery-class'} // default ''
+                elementType={'ul'} // default 'div'
+                options={masonryOptions} // default {}
+                disableImagesLoaded={false} // default false
+                updateOnEachImageLoad={false} // default false and works only if disableImagesLoaded is false
+                imagesLoadedOptions={imagesLoadedOptions} // default {}
+            >
+                {childElements}
+            </Masonry>
+
+
+
+
+
+
+
+        {
+          ///////////////////////////////////////
+        }
+
+
+          <h1>HELLLLLOOOOO</h1>
+         
       </div>
     );
   }
 }
+
+//  <Gallery />
 // <img key={el.id}src={el.images.fixed_height_small.url} alt="test" />
 //export default GifCon;
 export default withStyles(styles)(GifCon);

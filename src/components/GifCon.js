@@ -10,7 +10,7 @@ import GifModal from './GifModal';
 
 
 const styles = theme => ({
-	gifConTestMui:{color:"blue"}
+	gifConTestMui:{color:"red"}
 })
 
 class GifCon extends Component {

@@ -21,8 +21,8 @@ export default (search) => {
 
   }).then(function(response) {
   	//console.log("Responce from giphy worked",response.data.data[0].images.downsized_medium.url)
-    console.log('giphy RESPONCE',response.data.data[1])
-    console.log("number of gif's", response.data.data.length)
+    //console.log('giphy RESPONCE',response.data.data[1])
+    //console.log("number of gif's", response.data.data.length)
     return response.data.data
   });
 }

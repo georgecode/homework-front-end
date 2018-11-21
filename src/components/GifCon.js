@@ -45,9 +45,6 @@ class GifCon extends Component {
 
     }
     this.handleGifModalOpen = this.handleGifModalOpen.bind(this);
-    //childElements
-
-    this.childElements = this.childElements.bind(this);
   }
 
    componentDidMount() {
@@ -72,16 +69,8 @@ class GifCon extends Component {
     			});
 		}
 	}
-
-
-
-
-
-
-
-
+  //Opens and closes gifModal
 	handleGifModalOpen(event){
-		//console.log("handleGifModalOpen####################",this.state)
 		//console.log("handleGifModalOpen event", event.target)
 		this.setState({
       		open:true,
@@ -89,57 +78,14 @@ class GifCon extends Component {
       	});
 	}
 
-  childElements(ximages){
-    return ximages[0]
-    // ximages.map(function(el){
-    //   return("hello")
-    //    // return (
-
-    //    //      <li key={`li_${el.id}`}className="image-element-class">
-    //    //          <img 
-    //    //          src={el.images.fixed_width.url} 
-    //    //          key={el.id} 
-    //    //          //onClick={childClick} 
-    //    //          alt="test"
-    //    //          title={el.title}
-    //    //          data-big={el.images.original.url}
-    //    //          />
-    //    //      </li>
-    //    //  );
-    // });
-  }
-
-
-
-
   render() {
   	//console.log("this.props.searchQuery", this.props.searchQuery)
   	const { classes } = this.props
-    
-    ///////Original////////////////////////////////////////
-    const childElements = this.state.images.map(function(el,handleGifModalOpen){
-        console.log("handleGifModalOpenxxxxxxxxx",handleGifModalOpen)
-       return (
 
-            <li key={`li_${el.id}`}className="image-element-class">
-                <img 
-                src={el.images.fixed_width.url} 
-                key={el.id} 
-                //onClick={childClick} 
-                alt="test"
-                title={el.title}
-                data-big={el.images.original.url}
-                />
-            </li>
-        );
-    });
-     ///////Original/////////////////////////////////////////////
-     const childElements2 = function(images,openModal){
+    const childElements = function(images,openModal){
         console.log("images in child2",images)
-        console.log("open modal in child2",openModal)
         return(
             images.map(function(el){
-              //console.log("handleGifModalOpenxxxxxxxxx",handleGifModalOpen)
              return (
 
                   <li key={`li_${el.id}`}className="image-element-class">
@@ -157,93 +103,32 @@ class GifCon extends Component {
          )   
      }
 
-    //let giCon
-
-    //console.log("this.handleGifModalOpen",this.handleGifModalOpen)
-
     return (
 
       <div>
-    	<GifModal gifInfo={this.state.gifInfo} open={this.state.open}/>
-    	<Paper>
-        <h1 className={classes.gifConTestMui}> Gif cotain</h1>
-        </Paper>
-        {
-          ///////////////////////////////////////
-        }
-
-            
-
+    	 <GifModal gifInfo={this.state.gifInfo} open={this.state.open}/>
+    	 <Paper>
+          <h1 className={classes.gifConTestMui}> Gif cotain</h1>
+      </Paper>
             <Masonry
+              //Masonry API
+              //https://www.npmjs.com/package/react-masonry-component
                 className={'my-gallery-class'} // default ''
                 elementType={'ul'} // default 'div'
                 options={masonryOptions} // default {}
                 disableImagesLoaded={false} // default false
                 updateOnEachImageLoad={false} // default false and works only if disableImagesLoaded is false
                 imagesLoadedOptions={imagesLoadedOptions} // default {}
-
             >
-
-            {//console.log("this inside Masonary",this.handleGifModalOpen)
-             }
-
-
-                {
-                  childElements2(this.state.images,this.handleGifModalOpen)
-                 // let x ="hello"
-                  //childElements
-                  //console.log("this state child img location",this.state.images)
-                  
-                  //console.log("this state child img location",this.handleGifModalOpen)
-
-                //  this.state.images.map(function(el){
-                //   console.log("this inside map of images",this)
-
-                //    return (
-
-
-                //         <li key={`li_${el.id}`} className="image-element-class">
-
-                //             <img 
-                //             src={el.images.fixed_width.url} 
-                //             key={el.id} 
-                //             //onClick={this.handleGifModalOpen}
-                //             alt="test"
-                //             title={el.title}
-                //             data-big={el.images.original.url}
-                //             />
-                //         </li>
-                //     )
-                // })
-
-
-
-
-                }
-
+                {childElements(this.state.images,this.handleGifModalOpen)}
             </Masonry>
-
-
-
-
-
-
-
-        {
-          ///////////////////////////////////////
-        }
-
-
-          <h1>HELLLLLOOOOO</h1>
-         
       </div>
     );
   }
 }
+//<li key={`li_${el.id}`}className="image-element-class">
 //<GifModal gifInfo={this.state.gifInfo} open={this.state.open}/>
-////{childElements}
 //  <Gallery />
-// <img key={el.id}src={el.images.fixed_height_small.url} alt="test" />
 //export default GifCon;
 export default withStyles(styles)(GifCon);
 

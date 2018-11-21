@@ -45,6 +45,9 @@ class GifCon extends Component {
 
     }
     this.handleGifModalOpen = this.handleGifModalOpen.bind(this);
+    //childElements
+
+    this.childElements = this.childElements.bind(this);
   }
 
    componentDidMount() {
@@ -78,7 +81,7 @@ class GifCon extends Component {
 
 
 	handleGifModalOpen(event){
-		//console.log("handleGifModalOpen")
+		//console.log("handleGifModalOpen####################",this.state)
 		//console.log("handleGifModalOpen event", event.target)
 		this.setState({
       		open:true,
@@ -86,29 +89,80 @@ class GifCon extends Component {
       	});
 	}
 
+  childElements(ximages){
+    return ximages[0]
+    // ximages.map(function(el){
+    //   return("hello")
+    //    // return (
+
+    //    //      <li key={`li_${el.id}`}className="image-element-class">
+    //    //          <img 
+    //    //          src={el.images.fixed_width.url} 
+    //    //          key={el.id} 
+    //    //          //onClick={childClick} 
+    //    //          alt="test"
+    //    //          title={el.title}
+    //    //          data-big={el.images.original.url}
+    //    //          />
+    //    //      </li>
+    //    //  );
+    // });
+  }
+
+
+
+
   render() {
   	//console.log("this.props.searchQuery", this.props.searchQuery)
   	const { classes } = this.props
-
-
-    const childElements = this.state.images.map(function(el){
-      console.log("el",el.id)
+    
+    ///////Original////////////////////////////////////////
+    const childElements = this.state.images.map(function(el,handleGifModalOpen){
+        console.log("handleGifModalOpenxxxxxxxxx",handleGifModalOpen)
        return (
 
-            <li className="image-element-class">
+            <li key={`li_${el.id}`}className="image-element-class">
                 <img 
                 src={el.images.fixed_width.url} 
-                key={el.id} />
+                key={el.id} 
+                //onClick={childClick} 
+                alt="test"
+                title={el.title}
+                data-big={el.images.original.url}
+                />
             </li>
         );
     });
+     ///////Original/////////////////////////////////////////////
+     const childElements2 = function(images,openModal){
+        console.log("images in child2",images)
+        console.log("open modal in child2",openModal)
+        return(
+            images.map(function(el){
+              //console.log("handleGifModalOpenxxxxxxxxx",handleGifModalOpen)
+             return (
 
+                  <li key={`li_${el.id}`}className="image-element-class">
+                      <img 
+                      src={el.images.fixed_width.url} 
+                      key={el.id} 
+                      onClick={openModal} 
+                      alt="test"
+                      title={el.title}
+                      data-big={el.images.original.url}
+                      />
+                  </li>
+              )
+          })
+         )   
+     }
 
+    //let giCon
 
-
-
+    //console.log("this.handleGifModalOpen",this.handleGifModalOpen)
 
     return (
+
       <div>
     	<GifModal gifInfo={this.state.gifInfo} open={this.state.open}/>
     	<Paper>
@@ -118,7 +172,7 @@ class GifCon extends Component {
           ///////////////////////////////////////
         }
 
-
+            
 
             <Masonry
                 className={'my-gallery-class'} // default ''
@@ -127,8 +181,46 @@ class GifCon extends Component {
                 disableImagesLoaded={false} // default false
                 updateOnEachImageLoad={false} // default false and works only if disableImagesLoaded is false
                 imagesLoadedOptions={imagesLoadedOptions} // default {}
+
             >
-                {childElements}
+
+            {//console.log("this inside Masonary",this.handleGifModalOpen)
+             }
+
+
+                {
+                  childElements2(this.state.images,this.handleGifModalOpen)
+                 // let x ="hello"
+                  //childElements
+                  //console.log("this state child img location",this.state.images)
+                  
+                  //console.log("this state child img location",this.handleGifModalOpen)
+
+                //  this.state.images.map(function(el){
+                //   console.log("this inside map of images",this)
+
+                //    return (
+
+
+                //         <li key={`li_${el.id}`} className="image-element-class">
+
+                //             <img 
+                //             src={el.images.fixed_width.url} 
+                //             key={el.id} 
+                //             //onClick={this.handleGifModalOpen}
+                //             alt="test"
+                //             title={el.title}
+                //             data-big={el.images.original.url}
+                //             />
+                //         </li>
+                //     )
+                // })
+
+
+
+
+                }
+
             </Masonry>
 
 
@@ -148,7 +240,8 @@ class GifCon extends Component {
     );
   }
 }
-
+//<GifModal gifInfo={this.state.gifInfo} open={this.state.open}/>
+////{childElements}
 //  <Gallery />
 // <img key={el.id}src={el.images.fixed_height_small.url} alt="test" />
 //export default GifCon;

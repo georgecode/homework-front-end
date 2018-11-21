@@ -27,7 +27,7 @@ class App extends Component {
         <CssBaseline />
         
         <SearchBar />
-                             
+                            
       </MuiThemeProvider>
     );
   }

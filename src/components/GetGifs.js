@@ -12,7 +12,7 @@ export default (search) => {
     //search
    	//url:`http://api.giphy.com/v1/gifs/search?q=${search}&api_key=nSrqu5nPMLDZWmKICduK7XeVKj5tOJCU&limit=100`,
    	//trending
-    url: `http://api.giphy.com/v1/gifs/${search}&api_key=nSrqu5nPMLDZWmKICduK7XeVKj5tOJCU&limit=100`,
+    url: `http://api.giphy.com/v1/gifs/${search}&api_key=nSrqu5nPMLDZWmKICduK7XeVKj5tOJCU&limit=40`,
    	 
    	//offset (choose the gif to start at)
    	 //url: "http://api.giphy.com/v1/gifs/trending?=&api_key=nSrqu5nPMLDZWmKICduK7XeVKj5tOJCU&offset=3&limit=20",

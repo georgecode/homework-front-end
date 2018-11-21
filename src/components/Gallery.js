@@ -125,12 +125,27 @@ class Gallery extends React.Component {
                 updateOnEachImageLoad={false} // default false and works only if disableImagesLoaded is false
                 imagesLoadedOptions={imagesLoadedOptions} // default {}
             >
-                {childElements}
+                
+            {
+                childElements
+                // this.state.elements.map(function(element){
+                //    return (
+                //         <li className="image-element-class">
+                //             <img src={element} />
+                //         </li>
+                //     )
+                // })
+            }
+
+
+
+
+
             </Masonry>
         );
     }
 }
- 
+ //{childElements}
 //export default Gallery;
 export default withStyles(styles)(Gallery);
 

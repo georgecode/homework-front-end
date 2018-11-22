@@ -1,3 +1,5 @@
+
+//react-masonry-component was used for the mosaic
 import React, { Component } from 'react';
 //import loading from '../images/loading.gif';
 import loading_small from '../images/loading_small.gif';
@@ -9,10 +11,39 @@ import { Paper } from "@material-ui/core";
 import GifModal from './GifModal';
 import Gallery from "./Gallery";
 import Masonry from 'react-masonry-component';
+import Grid from "@material-ui/core/Grid";
 
 
 const styles = theme => ({
-	gifConTestMui:{color:"red"}
+	//gifConTestMui:{color:"red"},
+  masonryCon:{
+    border: "5px solid #ff0000",
+    margin:"0 auto",
+    //textAlign:"center"
+  },
+  gifCon:{
+    //margin:"0 auto"
+    //margin:20
+    //borderRadius:"20px"
+    //paddingTop:90,
+    //backgroundColor:"red"
+  },
+  gif:{
+    //border: "5px solid #ff0000",
+    borderRadius:"8px",
+    // "&:hover":{
+    //   border: "2px solid #ff0000",
+    // },
+    // width:150
+  }
+  // belowGif:{
+    
+  //   marginTop:-30,
+  //   height:30,
+  //   //backgroundColor:"red",
+  //   //color:"blue"
+  // }
+
 })
 
 const masonryOptions = {
@@ -82,14 +113,24 @@ class GifCon extends Component {
   	//console.log("this.props.searchQuery", this.props.searchQuery)
   	const { classes } = this.props
 
+
+    //transitionDuration: 0,
+    const masonryOptions={
+                          fitWidth: true,
+                          //columnWidth: 300
+                          //isFitWidth:true
+                          }
+
     const childElements = function(images,openModal){
-        console.log("images in child2",images)
+        //fixed_width is 200p
+        console.log("images in child2",images[0].images)
         return(
             images.map(function(el){
              return (
-
-                  <li key={`li_${el.id}`}className="image-element-class">
+                  <Paper key={`paper${el.id}`} className={classes.gifCon}>
+                  
                       <img 
+                      className={classes.gif}
                       src={el.images.fixed_width.url} 
                       key={el.id} 
                       onClick={openModal} 
@@ -97,25 +138,45 @@ class GifCon extends Component {
                       title={el.title}
                       data-big={el.images.original.url}
                       />
-                  </li>
+            
+                  </Paper>
               )
           })
          )   
      }
 
     return (
-
+////////////////////////////////////////////react-masonry-component
       <div>
     	 <GifModal gifInfo={this.state.gifInfo} open={this.state.open}/>
+
+
+
+       <Grid container spacing={16}>
+          <Grid item xs={12} sm={6}>
+            <h1>Left</h1>
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <h1>Right</h1>
+          </Grid>
+       </Grid>
+
+
+
     	 <Paper>
           <h1 className={classes.gifConTestMui}> Gif cotain</h1>
       </Paper>
+      {console.log("masonryOptions@@@@@@@@@@@@",masonryOptions)}
+
             <Masonry
               //Masonry API
               //https://www.npmjs.com/package/react-masonry-component
-                className={'my-gallery-class'} // default ''
-                elementType={'ul'} // default 'div'
-                options={masonryOptions} // default {}
+                //className={'my-gallery-class'} // default ''
+                className={classes.masonryCon}
+                elementType={'div'} // default 'div'
+                //options={masonryOptions} // default {} isFitWidth   fitWidth: true
+                options={masonryOptions} // default {} isFitWidth
+               //options: PropTypes.object,
                 disableImagesLoaded={false} // default false
                 updateOnEachImageLoad={false} // default false and works only if disableImagesLoaded is false
                 imagesLoadedOptions={imagesLoadedOptions} // default {}
@@ -126,6 +187,8 @@ class GifCon extends Component {
     );
   }
 }
+//<div key={`div_${el.id}`} className={classes.gifCon}>
+//className="image-element-class"
 //<li key={`li_${el.id}`}className="image-element-class">
 //<GifModal gifInfo={this.state.gifInfo} open={this.state.open}/>
 //  <Gallery />

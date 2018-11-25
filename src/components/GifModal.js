@@ -20,29 +20,51 @@ const styles = theme => ({
     padding: 10,
     marginTop: 50,
     outline: "none",
-    
+    "@media (min-width: 600px)": {
+      width:550
+    },
+    "@media (min-width: 1400px)": {
+      width:800
+    },
+///////////////
+////////
+/////////
   },
   closeButton: {
     display: "block",
-    float: "right"
+    float: "right",
+    "@media (min-width: 1400px)": {
+      fontSize:'2.5em'
+    },
   },
   title:{
     fontSize:'1.2em',
+
     //textAlign:"center",
     fontWeight:600,
     marginTop:10,
+    "@media (min-width: 600px)": {
+      fontSize:'1.5em',
+      marginLeft:55
+    },
+    "@media (min-width: 1400px)": {
+      fontSize:'2em'
+    },
   },
-  imageCon:{
-    borderRadius:"8px",
-    //display:'block',
-    backgroundColor:"black",
-    width:250,
-    //height:300,
-    margin:"0 auto",
-    //backgroundSize: "cover",
-    //objectFit: 'cover'
-    //objectFit: 'contain'
-  },
+  // imageCon:{
+  //   borderRadius:"8px",
+  //   //display:'block',
+  //   backgroundColor:"black",
+  //   width:250,
+  //   //height:300,
+  //   margin:"0 auto",
+  //   "@media (min-width: 600px)": {
+  //     width:400
+  //   },
+  //   //backgroundSize: "cover",
+  //   //objectFit: 'cover'
+  //   //objectFit: 'contain'
+  // },
   image:{
     borderRadius:"8px",
     //maxWidth:'100%', 
@@ -50,7 +72,13 @@ const styles = theme => ({
     margin:'auto',
     display:'block',
     width:250,
-    marginTop:30
+    marginTop:30,
+    "@media (min-width: 600px)": {
+      width:400
+    },
+    "@media (min-width: 1400px)": {
+      width:600
+    },
 
   // objectFit: "cover",
   //display: 'block',
@@ -59,14 +87,36 @@ const styles = theme => ({
   },
   importDate:{
     fontSize:'0.75em',
-    marginBottom:10
+    marginBottom:10,
+    "@media (min-width: 600px)": {
+      fontSize:'1em',
+      marginLeft:55
+    },
+    "@media (min-width: 1400px)": {
+      fontSize:'1.5em',
+      marginBottom:20,
+    },
   },
   createdBy:{
     fontSize:'0.75em',
+    "@media (min-width: 600px)": {
+      fontSize:'1em',
+      marginLeft:55
+    },
+    "@media (min-width: 1400px)": {
+      fontSize:'1.5em'
+    },
   },
   upLoadedBy:{
     fontSize:'0.75em',
-    marginBottom:20
+    marginBottom:20,
+    "@media (min-width: 600px)": {
+      fontSize:'1em',
+      marginLeft:55
+    },
+    "@media (min-width: 1400px)": {
+      fontSize:'1.5em'
+    },
   },
   credits:{
     fontWeight:600
@@ -81,11 +131,17 @@ const styles = theme => ({
     paddingLeft:10,
 
     border: "1px solid #000000",
+    "@media (min-width: 1400px)": {
+      marginRight:10
+    },
+
   },
   rating:{
     textAlign:"center",
-    color:"white"
-
+    color:"white",
+    "@media (min-width: 1400px)": {
+      fontSize:'2em'
+    },
 
 
     //float:"right"
@@ -104,7 +160,8 @@ class GifModal extends Component {
       by:"by someone",
       rating:"",
       username:"",
-      importDate:""
+      importDate:"",
+      //userPic:""
     };
   } 
 
@@ -126,7 +183,8 @@ class GifModal extends Component {
         by: nextProps.gifInfo.title.split('GIF')[1].replace("by", ""),
         rating:nextProps.gifInfo.getAttribute('data-rating').toUpperCase(),
         username: nextProps.gifInfo.getAttribute('data-username'),
-        importDate: nextProps.gifInfo.getAttribute('data-importDate').split(' ')[0],
+        importDate: nextProps.gifInfo.getAttribute('data-import-date').split(' ')[0],
+        //userPic:nextProps.gifInfo.getAttribute('data-user-pic')
       });
     }
   }
@@ -153,9 +211,9 @@ class GifModal extends Component {
                 onClick={this.handleGifModalClose}
               />
 
-              <div className={classes.imageCon} >
+             
                 <img className={classes.image} src={this.state.bigImg} alt="test" />
-              </div>
+            
               <Typography className={classes.title} variant="h1" id="modal-title">
                 {this.state.title
                 }
@@ -166,7 +224,7 @@ class GifModal extends Component {
 
               <Typography className={classes.createdBy} variant="h6" id="modal-title" >
                 Created by 
-                <span className={classes.credits}>{this.state.by}</span>
+                <span className={classes.credits}>{this.state.by===""?" Unknown":this.state.by}</span>
                 
               </Typography> 
               <div className={classes.ratingCon}>
@@ -176,7 +234,7 @@ class GifModal extends Component {
               </div>
               <Typography className={classes.upLoadedBy} variant="h6" id="modal-title" >
                 Uploaded by 
-                <span className={classes.credits}>{" "+this.state.username}</span>
+                <span className={classes.credits}>{this.state.username===""?" Unknown":" "+this.state.username}</span>
               </Typography>
 
             </Paper>
@@ -187,7 +245,7 @@ class GifModal extends Component {
     );
   }
 }
-
+// <div className={classes.imageCon} >
 export default withStyles(styles)(GifModal);
 //style={{background: `url(${this.state.bigImg})`}}
 

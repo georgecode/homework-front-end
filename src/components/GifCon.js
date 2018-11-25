@@ -89,8 +89,7 @@ class GifCon extends Component {
     this.state = {
     	//****Dont forget to change this if you change image option
     	images:[{id:"12345678910",
-    		title:"title",
-
+    		title:"Title",
 	    	images:{
 	    		fixed_width:{
 	    			url:loading_small
@@ -170,7 +169,8 @@ class GifCon extends Component {
                       data-big={el.images.original.url}
                       data-username={el.username}
                       data-rating={el.rating}
-                      data-importDate={el.import_datetime}
+                      data-import-date={el.import_datetime}
+                      //data-user-pic={el.user.avatar_url}
                       />
                  
                   </div>

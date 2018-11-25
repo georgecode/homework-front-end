@@ -7,21 +7,36 @@ import loading_small from '../images/loading_small.gif';
 //so the paths file will be upper case and the named import will be lowercase
 import getGifs from './GetGifs'
 import { withStyles } from "@material-ui/core/styles";
-import { Paper } from "@material-ui/core";
+import { Paper,
+        Typography } from "@material-ui/core";
 import GifModal from './GifModal';
 import Gallery from "./Gallery";
 import Masonry from 'react-masonry-component';
 import Grid from "@material-ui/core/Grid";
 
 
+
+
+    //background-image: linear-gradient(90deg, rgb(66, 188, 151) 25%, transparent 60%)
+
+
 const styles = theme => ({
 	//gifConTestMui:{color:"red"},
   masonryCon:{
-    border: "5px solid #ff0000",
+    //border: "5px solid #ff0000",
     margin:"0 auto",
+    //paddingRight:100
     //textAlign:"center"
   },
   gifCon:{
+    margin:10,
+    borderRadius:"8px",
+    padding:3,
+    "&:hover":{
+       backgroundColor:"rgba(147, 130, 122, 0.3)",
+    },
+
+    //rgb(147, 130, 122)
     //margin:"0 auto"
     //margin:20
     //borderRadius:"20px"
@@ -30,11 +45,27 @@ const styles = theme => ({
   },
   gif:{
     //border: "5px solid #ff0000",
-    borderRadius:"8px",
+     borderRadius:"8px",
+    //     "&:hover":{
+    //    border: "2px solid #ff0000",
+    // },
     // "&:hover":{
     //   border: "2px solid #ff0000",
     // },
-    // width:150
+    width:120,
+    // //960-up
+    "@media (min-width: 360px)": {
+      width:150
+    },
+    "@media (min-width: 400px)": {
+      width:170
+    },
+    "@media (min-width: 500px)": {
+      width:200
+    },
+    "@media (min-width: 600px)": {
+      width:250
+    },
   }
   // belowGif:{
     
@@ -58,7 +89,7 @@ class GifCon extends Component {
     this.state = {
     	//****Dont forget to change this if you change image option
     	images:[{id:"12345678910",
-    		title:"title GIF title",
+    		title:"title",
 
 	    	images:{
 	    		fixed_width:{
@@ -123,23 +154,26 @@ class GifCon extends Component {
 
     const childElements = function(images,openModal){
         //fixed_width is 200p
-        console.log("images in child2",images[0].images)
+        console.log("images in child2",images[0])
         return(
             images.map(function(el){
              return (
-                  <Paper key={`paper${el.id}`} className={classes.gifCon}>
+                  <div key={`div${el.id}`} className={classes.gifCon}>
                   
                       <img 
                       className={classes.gif}
                       src={el.images.fixed_width.url} 
                       key={el.id} 
                       onClick={openModal} 
-                      alt="test"
+                      alt="testzzz"
                       title={el.title}
                       data-big={el.images.original.url}
+                      data-username={el.username}
+                      data-rating={el.rating}
+                      data-importDate={el.import_datetime}
                       />
-            
-                  </Paper>
+                 
+                  </div>
               )
           })
          )   
@@ -151,21 +185,6 @@ class GifCon extends Component {
     	 <GifModal gifInfo={this.state.gifInfo} open={this.state.open}/>
 
 
-
-       <Grid container spacing={16}>
-          <Grid item xs={12} sm={6}>
-            <h1>Left</h1>
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <h1>Right</h1>
-          </Grid>
-       </Grid>
-
-
-
-    	 <Paper>
-          <h1 className={classes.gifConTestMui}> Gif cotain</h1>
-      </Paper>
       {console.log("masonryOptions@@@@@@@@@@@@",masonryOptions)}
 
             <Masonry

@@ -91,7 +91,8 @@ class GifCon extends Component {
     	images:[{id:"12345678910",
     		title:"Title",
 	    	images:{
-	    		fixed_width:{
+          //downsampled to speed up load time
+	    		fixed_width_downsampled:{
 	    			url:loading_small
 	    			},
 	    		original:{
@@ -164,8 +165,8 @@ class GifCon extends Component {
 
     const childElements = function(images,openModal){
         //fixed_width is 200p
-        
-        //console.log("images in child2",images[0])
+        //fixed_width_downsampled
+        console.log("images in child2",images[0])
         return(
             images.map(function(el){
              return (
@@ -173,7 +174,7 @@ class GifCon extends Component {
                   
                       <img 
                       className={classes.gif}
-                      src={el.images.fixed_width.url} 
+                      src={el.images.fixed_width_downsampled.url} 
                       key={el.id} 
                       onClick={openModal} 
                       alt="testzzz"
@@ -205,6 +206,7 @@ class GifCon extends Component {
        gifInfo={this.state.gifInfo} 
        open={this.state.open}
        sendData={this.getData}
+       
        />
 
 
@@ -221,7 +223,8 @@ class GifCon extends Component {
                 options={masonryOptions} // default {} isFitWidth
                //options: PropTypes.object,
                 disableImagesLoaded={false} // default false
-                updateOnEachImageLoad={false} // default false and works only if disableImagesLoaded is false
+                //Loads faster when this is set to true
+                updateOnEachImageLoad={true} // default false and works only if disableImagesLoaded is false
                 imagesLoadedOptions={imagesLoadedOptions} // default {}
             >
                 {childElements(this.state.images,this.handleGifModalOpen)}

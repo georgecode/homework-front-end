@@ -10,9 +10,13 @@ import loading_small from '../images/loading_small.gif';
     //green
     //background-image: linear-gradient(90deg, rgb(66, 188, 151) 25%, transparent 60%)
 const styles = theme => ({
+  modal:{
+  overflowY: "scroll"
+  },
   paper: {
     backgroundColor: "#ffffff",
     padding: 10,
+
     //background:"linear-gradient(90deg, rgb(66, 188, 151) 25%, transparent 60%)"
   },
   modalCon: {
@@ -191,6 +195,8 @@ class GifModal extends Component {
   }
 
   handleGifModalClose = () => {
+    console.log("XXXXXXXXXXXXXXXXXXXXXX",this.props.sendData)
+    this.props.sendData(false)
     this.setState({ open: false });
   };
 
@@ -207,9 +213,11 @@ class GifModal extends Component {
           aria-describedby="simple-modal-description"
           open={this.state.open}
           onBackdropClick={this.handleGifModalClose}
+          className={classes.modal}
+
         >
           <div className={classes.modalCon}>
-            <Paper className={classes.paper}>
+            <Paper scroll= 'paper' className={classes.paper}>
 
               <HighliteOff
                 className={classes.closeButton}

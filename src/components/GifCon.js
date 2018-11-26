@@ -91,7 +91,8 @@ class GifCon extends Component {
     	images:[{id:"12345678910",
     		title:"Title",
 	    	images:{
-	    		fixed_width:{
+          //downsampled to speed up load time
+	    		fixed_width_downsampled:{
 	    			url:loading_small
 	    			},
 	    		original:{
@@ -106,7 +107,7 @@ class GifCon extends Component {
 
     }
     this.handleGifModalOpen = this.handleGifModalOpen.bind(this);
-    //this.getData = this.getData.bind(this)
+    this.getData = this.getData.bind(this)
   }
 
    componentDidMount() {
@@ -134,11 +135,21 @@ class GifCon extends Component {
   //Opens and closes gifModal
 	handleGifModalOpen(event){
 		//console.log("handleGifModalOpen event", event.target)
+    console.log("ZZZZZZZZZZZZZ",event.target)
 		this.setState({
       		open:true,
       		gifInfo:event.target
       	});
 	}
+  //Fixes search bar bug
+  getData(val){
+    console.log(val);
+        this.setState({
+          open:val,
+        
+        });
+
+  }
 
   render() {
   	//console.log("this.props.searchQuery", this.props.searchQuery)
@@ -154,6 +165,7 @@ class GifCon extends Component {
 
     const childElements = function(images,openModal){
         //fixed_width is 200p
+        //fixed_width_downsampled
         console.log("images in child2",images[0])
         return(
             images.map(function(el){
@@ -162,7 +174,7 @@ class GifCon extends Component {
                   
                       <img 
                       className={classes.gif}
-                      src={el.images.fixed_width.url} 
+                      src={el.images.fixed_width_downsampled.url} 
                       key={el.id} 
                       onClick={openModal} 
                       alt="testzzz"
@@ -171,7 +183,6 @@ class GifCon extends Component {
                       data-username={el.username}
                       data-rating={el.rating}
                       data-import-date={el.import_datetime}
-                      //sendData={this.getData}
                       //data-user-pic={el.user.avatar_url}
                       />
                  
@@ -181,13 +192,6 @@ class GifCon extends Component {
          )   
      }
 
-// getData(val){
-//     // do not forget to bind getData in constructor
-//     console.log(val);
-// }
-// render(){
-//  return(<Child sendData={this.getData}/>);
-// }
 
 
 
@@ -196,11 +200,18 @@ class GifCon extends Component {
 
     return (
 ////////////////////////////////////////////react-masonry-component
+
       <div>
-    	 <GifModal gifInfo={this.state.gifInfo} open={this.state.open}/>
+    	 <GifModal 
+       gifInfo={this.state.gifInfo} 
+       open={this.state.open}
+       sendData={this.getData}
+
+       />
 
 
-      {console.log("masonryOptions@@@@@@@@@@@@",masonryOptions)}
+      {//console.log("masonryOptions@@@@@@@@@@@@",masonryOptions)
+      }
 
             <Masonry
               //Masonry API
@@ -212,7 +223,8 @@ class GifCon extends Component {
                 options={masonryOptions} // default {} isFitWidth
                //options: PropTypes.object,
                 disableImagesLoaded={false} // default false
-                updateOnEachImageLoad={false} // default false and works only if disableImagesLoaded is false
+                //Loads faster when this is set to true
+                updateOnEachImageLoad={true} // default false and works only if disableImagesLoaded is false
                 imagesLoadedOptions={imagesLoadedOptions} // default {}
             >
                 {childElements(this.state.images,this.handleGifModalOpen)}

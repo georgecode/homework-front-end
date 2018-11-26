@@ -84,6 +84,9 @@ class SearchBar extends Component {
 
     //this.searchChange = this.searchChange.bind(this);
     this.searchIconClick = this.searchIconClick.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
+
+  
   } 
 
   // searchChange(event) {
@@ -107,6 +110,29 @@ class SearchBar extends Component {
       });
     }
   }
+
+
+
+handleKeyPress(event){
+
+  //console.log("Is it focused??")
+  //console.log(document.getElementById("searchInput"))
+  //console.log("EVENT KEY",event.key)
+  if(event.key == 'Enter'){
+    console.log("you hit enter when the search bar was in focus")
+    console.log(event.target.value)
+      if(event.target.value!==""){
+        //console.log("search icon was clicked",event.target.value)
+        this.setState({
+          searchQuery:`search?q=${event.target.value}`
+        });
+      }
+
+  }
+  //searchInput
+}
+
+
 
 
     render() {
@@ -134,8 +160,9 @@ class SearchBar extends Component {
                />
             </div>
             <InputBase
+              id="searchInput"
               placeholder="Search…"
-              //
+              onKeyPress={this.handleKeyPress}
               //onChange={this.searchChange}
               classes={{
                 root: classes.inputRoot,

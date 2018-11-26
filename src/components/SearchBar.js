@@ -41,6 +41,7 @@ const styles = theme => ({
       marginLeft: theme.spacing.unit,
       width: 'auto',
     },
+    cursor: 'pointer'
   },
   searchIcon: {
     width: theme.spacing.unit * 9,

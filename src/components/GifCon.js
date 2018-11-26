@@ -206,7 +206,7 @@ class GifCon extends Component {
        gifInfo={this.state.gifInfo} 
        open={this.state.open}
        sendData={this.getData}
-       
+
        />
 
 

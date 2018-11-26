@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 import SearchBar from './components/SearchBar';
 //import GifCon from './components/GifCon';
 //import loading from './images/loading.gif';
-
+import MosaicStyle from './components/MosaicStyle';
+//import Gallery from './components/Gallery';
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import Theme from "./components/Theme";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -24,12 +25,16 @@ class App extends Component {
     return (
       <MuiThemeProvider theme={this.theme}>
         <CssBaseline />
-        <SearchBar />                     
+        
+        <SearchBar />
+                            
       </MuiThemeProvider>
     );
   }
 }
+//<MosaicStyle />
 
+//<SearchBar />
 //export default App;
 //export default withStyles(styles)(App)
 export default withTheme()(App);

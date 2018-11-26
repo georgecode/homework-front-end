@@ -120,7 +120,7 @@ class SearchBar extends Component {
             <MenuIcon />
           </IconButton>
           <Typography className={classes.title} variant="h6" color="inherit" noWrap>
-            Material-UI
+            Georges Gif App
           </Typography>
           <div className={classes.grow} />
           <div 

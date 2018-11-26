@@ -15,6 +15,7 @@ export default props => {
       //fontFamily: '"Assistant", sans-serif'
     },
     palette: {
+      primary: { main: "#9360A8" },
       myGreen:"#7A9F35"
     },
     breakpoints: { 

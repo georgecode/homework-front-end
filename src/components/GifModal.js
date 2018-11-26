@@ -5,8 +5,9 @@ import { Typography,
          Paper, } from "@material-ui/core";
 import HighliteOff from "@material-ui/icons/HighlightOff";
 import loading_small from '../images/loading_small.gif';         
-
+    //purple
     //background-image: linear-gradient(90deg, rgb(147, 96, 168) 25%, transparent 60%),
+    //green
     //background-image: linear-gradient(90deg, rgb(66, 188, 151) 25%, transparent 60%)
 const styles = theme => ({
   paper: {
@@ -192,6 +193,10 @@ class GifModal extends Component {
   handleGifModalClose = () => {
     this.setState({ open: false });
   };
+
+ //  demoMethod(){
+ //   this.props.sendData(value);
+ // }
 
   render() {
   	const { classes } = this.props;

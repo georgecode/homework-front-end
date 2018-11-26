@@ -106,6 +106,7 @@ class GifCon extends Component {
 
     }
     this.handleGifModalOpen = this.handleGifModalOpen.bind(this);
+    //this.getData = this.getData.bind(this)
   }
 
    componentDidMount() {
@@ -170,6 +171,7 @@ class GifCon extends Component {
                       data-username={el.username}
                       data-rating={el.rating}
                       data-import-date={el.import_datetime}
+                      //sendData={this.getData}
                       //data-user-pic={el.user.avatar_url}
                       />
                  
@@ -178,6 +180,19 @@ class GifCon extends Component {
           })
          )   
      }
+
+// getData(val){
+//     // do not forget to bind getData in constructor
+//     console.log(val);
+// }
+// render(){
+//  return(<Child sendData={this.getData}/>);
+// }
+
+
+
+
+
 
     return (
 ////////////////////////////////////////////react-masonry-component

@@ -3,20 +3,17 @@ import { withStyles } from "@material-ui/core/styles";
 import { Typography, Modal, Paper } from "@material-ui/core";
 import HighliteOff from "@material-ui/icons/HighlightOff";
 import loading_small from "../images/loading_small.gif";
-//purple
-//background-image: linear-gradient(90deg, rgb(147, 96, 168) 25%, transparent 60%),
-//green
-//background-image: linear-gradient(90deg, rgb(66, 188, 151) 25%, transparent 60%)
+
 const styles = theme => ({
   modal: {
+    //allows modal to scroll
     overflowY: "scroll"
   },
   paper: {
     backgroundColor: "#ffffff",
     padding: 10
-
-    //background:"linear-gradient(90deg, rgb(66, 188, 151) 25%, transparent 60%)"
   },
+
   modalCon: {
     margin: "0 auto",
     width: 300,
@@ -29,10 +26,8 @@ const styles = theme => ({
     "@media (min-width: 1400px)": {
       width: 800
     }
-    ///////////////
-    ////////
-    /////////
   },
+
   closeButton: {
     display: "block",
     float: "right",
@@ -40,10 +35,9 @@ const styles = theme => ({
       fontSize: "2.5em"
     }
   },
+
   title: {
     fontSize: "1.2em",
-
-    //textAlign:"center",
     fontWeight: 600,
     marginTop: 10,
     "@media (min-width: 600px)": {
@@ -54,24 +48,9 @@ const styles = theme => ({
       fontSize: "2em"
     }
   },
-  // imageCon:{
-  //   borderRadius:"8px",
-  //   //display:'block',
-  //   backgroundColor:"black",
-  //   width:250,
-  //   //height:300,
-  //   margin:"0 auto",
-  //   "@media (min-width: 600px)": {
-  //     width:400
-  //   },
-  //   //backgroundSize: "cover",
-  //   //objectFit: 'cover'
-  //   //objectFit: 'contain'
-  // },
+
   image: {
     borderRadius: "8px",
-    //maxWidth:'100%',
-    //maxHeight:'100%',
     margin: "auto",
     display: "block",
     width: 250,
@@ -82,12 +61,8 @@ const styles = theme => ({
     "@media (min-width: 1400px)": {
       width: 600
     }
-
-    // objectFit: "cover",
-    //display: 'block',
-    //width: '100vw',
-    //height: '100vh',
   },
+
   importDate: {
     fontSize: "0.75em",
     marginBottom: 10,
@@ -100,6 +75,7 @@ const styles = theme => ({
       marginBottom: 20
     }
   },
+
   createdBy: {
     fontSize: "0.75em",
     "@media (min-width: 600px)": {
@@ -110,6 +86,7 @@ const styles = theme => ({
       fontSize: "1.5em"
     }
   },
+
   upLoadedBy: {
     fontSize: "0.75em",
     marginBottom: 20,
@@ -121,6 +98,7 @@ const styles = theme => ({
       fontSize: "1.5em"
     }
   },
+
   credits: {
     fontWeight: 600
   },
@@ -128,26 +106,24 @@ const styles = theme => ({
   ratingCon: {
     float: "right",
     backgroundColor: "black",
-    //width:30,
     borderRadius: "4px",
     paddingRight: 10,
     paddingLeft: 10,
-
     border: "1px solid #000000",
     "@media (min-width: 1400px)": {
       marginRight: 10
     }
   },
+
   rating: {
     textAlign: "center",
     color: "white",
     "@media (min-width: 1400px)": {
       fontSize: "2em"
     }
-
-    //float:"right"
   }
-});
+
+});//END styles
 
 class GifModal extends Component {
   constructor(props) {
@@ -160,19 +136,17 @@ class GifModal extends Component {
       rating: "",
       username: "",
       importDate: ""
-      //userPic:""
     };
   }
 
-  //.toUpperCase()
-
   componentWillReceiveProps(nextProps) {
     if (nextProps.open !== this.state.open) {
+      //made this a variable so i can use .map on it
       let title = nextProps.gifInfo.title.split("GIF")[0];
+
       this.setState({
         open: nextProps.open,
-        // title: nextProps.gifInfo.title.split('GIF')[0][0],
-        //Upper case title var
+        //Upper case title variable
         title: title
           .toLowerCase()
           .split(" ")
@@ -185,20 +159,14 @@ class GifModal extends Component {
         importDate: nextProps.gifInfo
           .getAttribute("data-import-date")
           .split(" ")[0]
-        //userPic:nextProps.gifInfo.getAttribute('data-user-pic')
       });
     }
   }
-
+  //Closes Modal
   handleGifModalClose = () => {
-    console.log("XXXXXXXXXXXXXXXXXXXXXX", this.props.sendData);
     this.props.sendData(false);
     this.setState({ open: false });
   };
-
-  //  demoMethod(){
-  //   this.props.sendData(value);
-  // }
 
   render() {
     const { classes } = this.props;
@@ -277,12 +245,5 @@ class GifModal extends Component {
     );
   }
 }
-// <div className={classes.imageCon} >
+
 export default withStyles(styles)(GifModal);
-//style={{background: `url(${this.state.bigImg})`}}
-
-//style={{backgroundImage: `url(${loading_small})`}}
-
-//<img className={classes.image} src={this.state.bigImg} alt="test" />
-//export default Header;
-//<img src={this.props.gifInfo.id} alt="test" />

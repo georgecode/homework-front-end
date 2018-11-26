@@ -2,14 +2,7 @@ import { createMuiTheme } from "@material-ui/core/styles";
 
 export default props => {
   return createMuiTheme({
-    // 	overrides: {
-    //   li: { // Name of the component ⚛️ / style sheet
-    //     root: { // Name of the rule
-    //       //color: 'white', // Some CSS
-    //       listStyle: "none"
-    //     },
-    //   },
-    // },
+
     typography: {
       useNextVariants: true
       //fontFamily: '"Assistant", sans-serif'
@@ -29,15 +22,3 @@ export default props => {
     }
   });
 };
-
-//"list-style: none"
-
-// const breakpointValues = {
-//   xs: 0,
-//   sm: 576,
-//   md: 768,
-//   lg: 992,
-//   xl: 1200,
-// };
-
-// const theme = createMuiTheme({ breakpoints: { values: breakpointValues } });

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-//import PropTypes from 'prop-types';
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
@@ -15,19 +14,23 @@ const styles = theme => ({
   root: {
     width: "100%"
   },
+
   grow: {
     flexGrow: 1
   },
+
   menuButton: {
     marginLeft: -12,
     marginRight: 20
   },
+
   title: {
     display: "none",
     [theme.breakpoints.up("sm")]: {
       display: "block"
     }
   },
+
   search: {
     position: "relative",
     borderRadius: theme.shape.borderRadius,
@@ -41,8 +44,10 @@ const styles = theme => ({
       marginLeft: theme.spacing.unit,
       width: "auto"
     },
+    //Fixes mobile click issue
     cursor: "pointer"
   },
+
   searchIcon: {
     width: theme.spacing.unit * 9,
     height: "100%",
@@ -52,10 +57,12 @@ const styles = theme => ({
     alignItems: "center",
     justifyContent: "center"
   },
+
   inputRoot: {
     color: "inherit",
     width: "100%"
   },
+
   inputInput: {
     paddingTop: theme.spacing.unit,
     paddingRight: theme.spacing.unit,
@@ -70,7 +77,7 @@ const styles = theme => ({
       }
     }
   }
-});
+});//End Styles
 
 class SearchBar extends Component {
   constructor(props) {
@@ -80,48 +87,29 @@ class SearchBar extends Component {
       searchQuery: "trending?="
     };
 
-    //this.searchChange = this.searchChange.bind(this);
     this.searchIconClick = this.searchIconClick.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
   }
 
-  // searchChange(event) {
-  //       console.log("EVENT $%^&*$%^&*$%^&*",event.target.value)
-  //   // const eventValue = event.target.value;
-  //   // const eventName = event.target.name;
-  //   // this.setState(function(prevState, props) {
-  //   //   return {
-  //   //     order: Object.assign({}, prevState.order, {
-  //   //       [eventName]: eventValue
-  //   //     })
-  //   //   };
-  //   // });
-  // }
-
+  //Executes a new search
   searchIconClick(event) {
     if (event.target.value !== "") {
-      //console.log("search icon was clicked",event.target.value)
       this.setState({
+        //Added search?q= here to keep the request clean
         searchQuery: `search?q=${event.target.value}`
       });
     }
   }
 
+  //Allows you to use the enter key to search
   handleKeyPress(event) {
-    //console.log("Is it focused??")
-    //console.log(document.getElementById("searchInput"))
-    //console.log("EVENT KEY",event.key)
-    if (event.key == "Enter") {
-      console.log("you hit enter when the search bar was in focus");
-      console.log(event.target.value);
+    if (event.key === "Enter") {
       if (event.target.value !== "") {
-        //console.log("search icon was clicked",event.target.value)
         this.setState({
           searchQuery: `search?q=${event.target.value}`
         });
       }
     }
-    //searchInput
   }
 
   render() {
@@ -169,10 +157,5 @@ class SearchBar extends Component {
     ); //END return
   } // END RENDER
 } // END SearchBar extends Component
-
-//***If you uncomment this be sure to uncomment it's import
-// SearchBar.propTypes = {
-//   classes: PropTypes.object.isRequired,
-// };
-
+  
 export default withStyles(styles)(SearchBar);

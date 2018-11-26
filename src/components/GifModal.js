@@ -1,21 +1,19 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component, Fragment } from "react";
 import { withStyles } from "@material-ui/core/styles";
-import { Typography,
-         Modal,
-         Paper, } from "@material-ui/core";
+import { Typography, Modal, Paper } from "@material-ui/core";
 import HighliteOff from "@material-ui/icons/HighlightOff";
-import loading_small from '../images/loading_small.gif';         
-    //purple
-    //background-image: linear-gradient(90deg, rgb(147, 96, 168) 25%, transparent 60%),
-    //green
-    //background-image: linear-gradient(90deg, rgb(66, 188, 151) 25%, transparent 60%)
+import loading_small from "../images/loading_small.gif";
+//purple
+//background-image: linear-gradient(90deg, rgb(147, 96, 168) 25%, transparent 60%),
+//green
+//background-image: linear-gradient(90deg, rgb(66, 188, 151) 25%, transparent 60%)
 const styles = theme => ({
-  modal:{
-  overflowY: "scroll"
+  modal: {
+    overflowY: "scroll"
   },
   paper: {
     backgroundColor: "#ffffff",
-    padding: 10,
+    padding: 10
 
     //background:"linear-gradient(90deg, rgb(66, 188, 151) 25%, transparent 60%)"
   },
@@ -26,35 +24,35 @@ const styles = theme => ({
     marginTop: 50,
     outline: "none",
     "@media (min-width: 600px)": {
-      width:550
+      width: 550
     },
     "@media (min-width: 1400px)": {
-      width:800
-    },
-///////////////
-////////
-/////////
+      width: 800
+    }
+    ///////////////
+    ////////
+    /////////
   },
   closeButton: {
     display: "block",
     float: "right",
     "@media (min-width: 1400px)": {
-      fontSize:'2.5em'
-    },
+      fontSize: "2.5em"
+    }
   },
-  title:{
-    fontSize:'1.2em',
+  title: {
+    fontSize: "1.2em",
 
     //textAlign:"center",
-    fontWeight:600,
-    marginTop:10,
+    fontWeight: 600,
+    marginTop: 10,
     "@media (min-width: 600px)": {
-      fontSize:'1.5em',
-      marginLeft:55
+      fontSize: "1.5em",
+      marginLeft: 55
     },
     "@media (min-width: 1400px)": {
-      fontSize:'2em'
-    },
+      fontSize: "2em"
+    }
   },
   // imageCon:{
   //   borderRadius:"8px",
@@ -70,142 +68,140 @@ const styles = theme => ({
   //   //objectFit: 'cover'
   //   //objectFit: 'contain'
   // },
-  image:{
-    borderRadius:"8px",
-    //maxWidth:'100%', 
+  image: {
+    borderRadius: "8px",
+    //maxWidth:'100%',
     //maxHeight:'100%',
-    margin:'auto',
-    display:'block',
-    width:250,
-    marginTop:30,
+    margin: "auto",
+    display: "block",
+    width: 250,
+    marginTop: 30,
     "@media (min-width: 600px)": {
-      width:400
+      width: 400
     },
     "@media (min-width: 1400px)": {
-      width:600
-    },
+      width: 600
+    }
 
-  // objectFit: "cover",
-  //display: 'block',
-  //width: '100vw',
-  //height: '100vh',
+    // objectFit: "cover",
+    //display: 'block',
+    //width: '100vw',
+    //height: '100vh',
   },
-  importDate:{
-    fontSize:'0.75em',
-    marginBottom:10,
+  importDate: {
+    fontSize: "0.75em",
+    marginBottom: 10,
     "@media (min-width: 600px)": {
-      fontSize:'1em',
-      marginLeft:55
+      fontSize: "1em",
+      marginLeft: 55
     },
     "@media (min-width: 1400px)": {
-      fontSize:'1.5em',
-      marginBottom:20,
-    },
+      fontSize: "1.5em",
+      marginBottom: 20
+    }
   },
-  createdBy:{
-    fontSize:'0.75em',
+  createdBy: {
+    fontSize: "0.75em",
     "@media (min-width: 600px)": {
-      fontSize:'1em',
-      marginLeft:55
+      fontSize: "1em",
+      marginLeft: 55
     },
     "@media (min-width: 1400px)": {
-      fontSize:'1.5em'
-    },
+      fontSize: "1.5em"
+    }
   },
-  upLoadedBy:{
-    fontSize:'0.75em',
-    marginBottom:20,
+  upLoadedBy: {
+    fontSize: "0.75em",
+    marginBottom: 20,
     "@media (min-width: 600px)": {
-      fontSize:'1em',
-      marginLeft:55
+      fontSize: "1em",
+      marginLeft: 55
     },
     "@media (min-width: 1400px)": {
-      fontSize:'1.5em'
-    },
+      fontSize: "1.5em"
+    }
   },
-  credits:{
-    fontWeight:600
+  credits: {
+    fontWeight: 600
   },
 
-  ratingCon:{
-    float:"right",
-    backgroundColor:"black",
+  ratingCon: {
+    float: "right",
+    backgroundColor: "black",
     //width:30,
-    borderRadius:"4px",
-    paddingRight:10,
-    paddingLeft:10,
+    borderRadius: "4px",
+    paddingRight: 10,
+    paddingLeft: 10,
 
     border: "1px solid #000000",
     "@media (min-width: 1400px)": {
-      marginRight:10
-    },
-
+      marginRight: 10
+    }
   },
-  rating:{
-    textAlign:"center",
-    color:"white",
+  rating: {
+    textAlign: "center",
+    color: "white",
     "@media (min-width: 1400px)": {
-      fontSize:'2em'
-    },
-
+      fontSize: "2em"
+    }
 
     //float:"right"
   }
-
-})
-
+});
 
 class GifModal extends Component {
-	constructor(props) {
+  constructor(props) {
     super(props);
     this.state = {
       open: this.props.open,
-      title:"hey O this is a title",
+      title: "hey O this is a title",
       bigImg: loading_small,
-      by:"by someone",
-      rating:"",
-      username:"",
-      importDate:"",
+      by: "by someone",
+      rating: "",
+      username: "",
+      importDate: ""
       //userPic:""
     };
-  } 
+  }
 
-//.toUpperCase()
+  //.toUpperCase()
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.open !== this.state.open) {
-      let title =nextProps.gifInfo.title.split('GIF')[0]
-      this.setState({ 
+      let title = nextProps.gifInfo.title.split("GIF")[0];
+      this.setState({
         open: nextProps.open,
         // title: nextProps.gifInfo.title.split('GIF')[0][0],
         //Upper case title var
         title: title
-              .toLowerCase()
-              .split(' ')
-              .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
-              .join(' '),
-        bigImg: nextProps.gifInfo.getAttribute('data-big'),
-        by: nextProps.gifInfo.title.split('GIF')[1].replace("by", ""),
-        rating:nextProps.gifInfo.getAttribute('data-rating').toUpperCase(),
-        username: nextProps.gifInfo.getAttribute('data-username'),
-        importDate: nextProps.gifInfo.getAttribute('data-import-date').split(' ')[0],
+          .toLowerCase()
+          .split(" ")
+          .map(s => s.charAt(0).toUpperCase() + s.substring(1))
+          .join(" "),
+        bigImg: nextProps.gifInfo.getAttribute("data-big"),
+        by: nextProps.gifInfo.title.split("GIF")[1].replace("by", ""),
+        rating: nextProps.gifInfo.getAttribute("data-rating").toUpperCase(),
+        username: nextProps.gifInfo.getAttribute("data-username"),
+        importDate: nextProps.gifInfo
+          .getAttribute("data-import-date")
+          .split(" ")[0]
         //userPic:nextProps.gifInfo.getAttribute('data-user-pic')
       });
     }
   }
 
   handleGifModalClose = () => {
-    console.log("XXXXXXXXXXXXXXXXXXXXXX",this.props.sendData)
-    this.props.sendData(false)
+    console.log("XXXXXXXXXXXXXXXXXXXXXX", this.props.sendData);
+    this.props.sendData(false);
     this.setState({ open: false });
   };
 
- //  demoMethod(){
- //   this.props.sendData(value);
- // }
+  //  demoMethod(){
+  //   this.props.sendData(value);
+  // }
 
   render() {
-  	const { classes } = this.props;
+    const { classes } = this.props;
     return (
       <Fragment>
         <Modal
@@ -214,47 +210,70 @@ class GifModal extends Component {
           open={this.state.open}
           onBackdropClick={this.handleGifModalClose}
           className={classes.modal}
-
         >
           <div className={classes.modalCon}>
-            <Paper scroll= 'paper' className={classes.paper}>
-
+            <Paper scroll="paper" className={classes.paper}>
               <HighliteOff
                 className={classes.closeButton}
                 onClick={this.handleGifModalClose}
               />
 
-             
-                <img className={classes.image} src={this.state.bigImg} alt="test" />
-            
-              <Typography className={classes.title} variant="h1" id="modal-title">
-                {this.state.title
-                }
+              <img
+                className={classes.image}
+                src={this.state.bigImg}
+                alt="test"
+              />
+
+              <Typography
+                className={classes.title}
+                variant="h1"
+                id="modal-title"
+              >
+                {this.state.title}
               </Typography>
-              <Typography className={classes.importDate} variant="h6" id="modal-title" >
+              <Typography
+                className={classes.importDate}
+                variant="h6"
+                id="modal-title"
+              >
                 {this.state.importDate}
               </Typography>
 
-              <Typography className={classes.createdBy} variant="h6" id="modal-title" >
-                Created by 
-                <span className={classes.credits}>{this.state.by===""?" Unknown":this.state.by}</span>
-                
-              </Typography> 
+              <Typography
+                className={classes.createdBy}
+                variant="h6"
+                id="modal-title"
+              >
+                Created by
+                <span className={classes.credits}>
+                  {this.state.by === "" ? " Unknown" : this.state.by}
+                </span>
+              </Typography>
               <div className={classes.ratingCon}>
-              <Typography className={classes.rating}variant="h6" id="modal-title" >
-                {this.state.rating}
-              </Typography>
+                <Typography
+                  className={classes.rating}
+                  variant="h6"
+                  id="modal-title"
+                >
+                  {this.state.rating}
+                </Typography>
               </div>
-              <Typography className={classes.upLoadedBy} variant="h6" id="modal-title" >
-                Uploaded by 
-                <span className={classes.credits}>{this.state.username===""?" Unknown":" "+this.state.username}</span>
+              <Typography
+                className={classes.upLoadedBy}
+                variant="h6"
+                id="modal-title"
+              >
+                Uploaded by
+                <span className={classes.credits}>
+                  {this.state.username === ""
+                    ? " Unknown"
+                    : " " + this.state.username}
+                </span>
               </Typography>
-
             </Paper>
           </div>
         </Modal>
       </Fragment>
-
     );
   }
 }
@@ -267,6 +286,3 @@ export default withStyles(styles)(GifModal);
 //<img className={classes.image} src={this.state.bigImg} alt="test" />
 //export default Header;
 //<img src={this.props.gifInfo.id} alt="test" />
-
-
-

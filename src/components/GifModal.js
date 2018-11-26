@@ -191,6 +191,8 @@ class GifModal extends Component {
   }
 
   handleGifModalClose = () => {
+    console.log("XXXXXXXXXXXXXXXXXXXXXX",this.props.sendData)
+    this.props.sendData(false)
     this.setState({ open: false });
   };
 

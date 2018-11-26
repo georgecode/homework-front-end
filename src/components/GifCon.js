@@ -106,7 +106,7 @@ class GifCon extends Component {
 
     }
     this.handleGifModalOpen = this.handleGifModalOpen.bind(this);
-    //this.getData = this.getData.bind(this)
+    this.getData = this.getData.bind(this)
   }
 
    componentDidMount() {
@@ -134,11 +134,21 @@ class GifCon extends Component {
   //Opens and closes gifModal
 	handleGifModalOpen(event){
 		//console.log("handleGifModalOpen event", event.target)
+    console.log("ZZZZZZZZZZZZZ",event.target)
 		this.setState({
       		open:true,
       		gifInfo:event.target
       	});
 	}
+  //Fixes search bar bug
+  getData(val){
+    console.log(val);
+        this.setState({
+          open:val,
+        
+        });
+
+  }
 
   render() {
   	//console.log("this.props.searchQuery", this.props.searchQuery)
@@ -154,7 +164,8 @@ class GifCon extends Component {
 
     const childElements = function(images,openModal){
         //fixed_width is 200p
-        console.log("images in child2",images[0])
+        
+        //console.log("images in child2",images[0])
         return(
             images.map(function(el){
              return (
@@ -171,7 +182,6 @@ class GifCon extends Component {
                       data-username={el.username}
                       data-rating={el.rating}
                       data-import-date={el.import_datetime}
-                      //sendData={this.getData}
                       //data-user-pic={el.user.avatar_url}
                       />
                  
@@ -181,13 +191,6 @@ class GifCon extends Component {
          )   
      }
 
-// getData(val){
-//     // do not forget to bind getData in constructor
-//     console.log(val);
-// }
-// render(){
-//  return(<Child sendData={this.getData}/>);
-// }
 
 
 
@@ -196,11 +199,17 @@ class GifCon extends Component {
 
     return (
 ////////////////////////////////////////////react-masonry-component
+
       <div>
-    	 <GifModal gifInfo={this.state.gifInfo} open={this.state.open}/>
+    	 <GifModal 
+       gifInfo={this.state.gifInfo} 
+       open={this.state.open}
+       sendData={this.getData}
+       />
 
 
-      {console.log("masonryOptions@@@@@@@@@@@@",masonryOptions)}
+      {//console.log("masonryOptions@@@@@@@@@@@@",masonryOptions)
+      }
 
             <Masonry
               //Masonry API

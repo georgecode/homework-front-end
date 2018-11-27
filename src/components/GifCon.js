@@ -119,7 +119,7 @@ class GifCon extends Component {
     };
 
     const childElements = function(images, openModal) {
-      //fixed_width is 200px
+      //fixed_width is 200px by default
 
       //keeping this here for future debugging
       //console.log("images", images[0]);

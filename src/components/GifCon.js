@@ -96,7 +96,12 @@ class GifCon extends Component {
     }
   }
   //Opens and closes gifModal
+  //window.history.pushState(null, "", window.location.href); 
   handleGifModalOpen(event) {
+    //pushes to history when modal is open allowing 
+    //This allows the back browser navigation to close the modal
+    window.history.pushState(null, "", window.location.href);
+
     this.setState({
       open: true,
       gifInfo: event.target
@@ -114,12 +119,14 @@ class GifCon extends Component {
     const { classes } = this.props;
 
     //transitionDuration: 0,
+    //Keep as variable, adding an object directly to props
+    //was throwing an error
     const masonryOptions = {
       fitWidth: true
     };
 
     const childElements = function(images, openModal) {
-      //fixed_width is 200px
+      //fixed_width is 200px by default
 
       //keeping this here for future debugging
       //console.log("images", images[0]);

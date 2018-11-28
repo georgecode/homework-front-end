@@ -3,6 +3,7 @@ import { withStyles } from "@material-ui/core/styles";
 import { Typography, Modal, Paper } from "@material-ui/core";
 import HighliteOff from "@material-ui/icons/HighlightOff";
 import loading_small from "../images/loading_small.gif";
+//import { browserHistory } from 'react-router'
 
 const styles = theme => ({
   modal: {
@@ -76,17 +77,6 @@ const styles = theme => ({
     }
   },
 
-  createdBy: {
-    fontSize: "0.75em",
-    "@media (min-width: 600px)": {
-      fontSize: "1em",
-      marginLeft: 55
-    },
-    "@media (min-width: 1400px)": {
-      fontSize: "1.5em"
-    }
-  },
-
   upLoadedBy: {
     fontSize: "0.75em",
     marginBottom: 20,
@@ -132,7 +122,7 @@ class GifModal extends Component {
       open: this.props.open,
       title: "hey O this is a title",
       bigImg: loading_small,
-      by: "by someone",
+      //by: "by someone",
       rating: "",
       username: "",
       importDate: ""
@@ -143,7 +133,6 @@ class GifModal extends Component {
     if (nextProps.open !== this.state.open) {
       //made this a variable so i can use .map on it
       let title = nextProps.gifInfo.title.split("GIF")[0];
-
       this.setState({
         open: nextProps.open,
         //Upper case title variable
@@ -153,7 +142,6 @@ class GifModal extends Component {
           .map(s => s.charAt(0).toUpperCase() + s.substring(1))
           .join(" "),
         bigImg: nextProps.gifInfo.getAttribute("data-big"),
-        by: nextProps.gifInfo.title.split("GIF")[1].replace("by", ""),
         rating: nextProps.gifInfo.getAttribute("data-rating").toUpperCase(),
         username: nextProps.gifInfo.getAttribute("data-username"),
         importDate: nextProps.gifInfo
@@ -166,9 +154,17 @@ class GifModal extends Component {
   handleGifModalClose = () => {
     this.props.sendData(false);
     this.setState({ open: false });
+    //sets history back
+    history.back()
   };
 
   render() {
+    //Closes modal when back button is hit
+    window.onpopstate = ()=> {
+      this.props.sendData(false);
+      this.setState({ open: false });
+     }
+
     const { classes } = this.props;
     return (
       <Fragment>
@@ -197,7 +193,11 @@ class GifModal extends Component {
                 variant="h1"
                 id="modal-title"
               >
-                {this.state.title}
+                {/*Removes all whit space and checks for Title less gifs*/}             
+                {this.state.title.replace(/\s/g,'')===""
+                ?"No Title"
+                :this.state.title}
+
               </Typography>
               <Typography
                 className={classes.importDate}
@@ -207,16 +207,6 @@ class GifModal extends Component {
                 {this.state.importDate}
               </Typography>
 
-              <Typography
-                className={classes.createdBy}
-                variant="h6"
-                id="modal-title"
-              >
-                Created by
-                <span className={classes.credits}>
-                  {this.state.by === "" ? " Unknown" : this.state.by}
-                </span>
-              </Typography>
               <div className={classes.ratingCon}>
                 <Typography
                   className={classes.rating}
@@ -233,9 +223,11 @@ class GifModal extends Component {
               >
                 Uploaded by
                 <span className={classes.credits}>
+                  {/*Checks to make sure gif has a username*/}
                   {this.state.username === ""
                     ? " Unknown"
                     : " " + this.state.username}
+                  }
                 </span>
               </Typography>
             </Paper>

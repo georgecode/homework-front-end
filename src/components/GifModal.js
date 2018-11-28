@@ -226,7 +226,7 @@ class GifModal extends Component {
                   {/*Checks to make sure gif has a username*/}
                   {this.state.username === ""
                     ? " Unknown"
-                    : " " + this.state.username}
+                    : " " + this.state.username
                   }
                 </span>
               </Typography>

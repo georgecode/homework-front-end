@@ -3,6 +3,7 @@ import { withStyles } from "@material-ui/core/styles";
 import { Typography, Modal, Paper } from "@material-ui/core";
 import HighliteOff from "@material-ui/icons/HighlightOff";
 import loading_small from "../images/loading_small.gif";
+//import { browserHistory } from 'react-router'
 
 const styles = theme => ({
   modal: {
@@ -153,9 +154,17 @@ class GifModal extends Component {
   handleGifModalClose = () => {
     this.props.sendData(false);
     this.setState({ open: false });
+    //sets history back
+    history.back()
   };
 
   render() {
+    //Closes modal when back button is hit
+    window.onpopstate = ()=> {
+      this.props.sendData(false);
+      this.setState({ open: false });
+     }
+
     const { classes } = this.props;
     return (
       <Fragment>
